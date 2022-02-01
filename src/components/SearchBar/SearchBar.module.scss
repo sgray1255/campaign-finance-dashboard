@@ -1,0 +1,31 @@
+.SearchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: whitesmoke;
+  width: 175px;
+  height: 40px;
+  margin-left: 40%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+
+
+  &__icon {
+    margin-right: 5%;
+  }
+
+  &__icon:hover {
+    cursor: pointer;
+  }
+}
+
+.input {
+  border: none;
+  background: whitesmoke;
+  width: 150px;
+  height: 40;
+}
+
+.input:focus {
+  outline: none;
+}
