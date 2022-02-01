@@ -12,8 +12,7 @@ const Legislator = () => {
   useEffect(() => {
     const populateLegislator = async () => {
       const legislator = await findLegislator(id);
-      console.log(id);
-      console.log(legislator);
+      console.log(`Legislator Info : ${legislator}`);
       setLegislator(legislator);
     }
 
@@ -24,6 +23,7 @@ const Legislator = () => {
   useEffect(() => {
     const populateSectors = async () => {
       const sectors = await findCandContrib(id);
+      console.log(`Campaign Contribution by Ind : ${sectors}`);
       setSectors(sectors);
     }
 
@@ -33,7 +33,7 @@ const Legislator = () => {
 
 
   if(!sectors) {
-    return <h1>Loading...</h1>
+    return <h1 className={styles.Loading}>Loading...</h1>
 
   } else {
 

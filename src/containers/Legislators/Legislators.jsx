@@ -26,7 +26,7 @@ const Legislators = () => {
   return (
     <div>
       <SearchBar />
-      <h1 className={styles.LegHeader}>{ searchTitle } State Representatives</h1>
+      <h1 className={styles.LegHeader}>{ searchTitle } State Congressmen</h1>
       <LegList legislators={ legislators }/>
     </div>
   )

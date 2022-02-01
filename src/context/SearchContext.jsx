@@ -5,8 +5,6 @@ export const SearchContext = createContext();
 const SearchProvider = ({children}) => {
   const [search, setSearch] = useState("");
 
-  console.log(search);
-
   const data = { search, setSearch };
 
   return (

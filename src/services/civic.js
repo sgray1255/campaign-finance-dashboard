@@ -8,7 +8,6 @@ export const getLegislators = async (search) => {
   const data = await response.json();
   const legislatorsResponse = data.response.legislator;
   const legislators = legislatorsResponse.map((legislator) => legislator["@attributes"]);
-  console.log(legislators)
   return legislators;
 };
 
@@ -17,7 +16,6 @@ export const findLegislator = async (id) => {
   const data = await response.json();
   const legislatorResponse = data.response.legislator;
   const legislator = legislatorResponse["@attributes"];
-  console.log(legislator);
   return legislator;
 };
 
@@ -26,7 +24,6 @@ export const findCandContrib = async (id) => {
   const data = await response.json();
   const candContribResponse = data.response.sectors.sector;
   const sectors = candContribResponse.map((sector) => sector["@attributes"]);
-  console.log(sectors);
   return sectors;
 };
 
