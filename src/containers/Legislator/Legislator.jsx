@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { findCandContrib, findLegislator } from '../../services/civic';
 import { getProfile } from '../../services/twitter_user';
 import styles from "./Legislator.module.scss";
+import Table from 'react-bootstrap/Table'
 
 const Legislator = () => {
   const { id } = useParams();
@@ -38,20 +39,30 @@ const Legislator = () => {
   } else {
 
   return (
-    <div>
+    <div className={styles.Table}>
       <h1 className={styles.LegTitle}>{legislator.firstlast}({legislator.party})</h1>
-      <h2>This is how much money {legislator.firstlast} took from the top contributing industries, from highest contributing industry to lowest contributing industry.</h2>
-      <ol>
-      {sectors.sort((a,b) => b.total - a.total).map((sector, index) => (
-          <li key={index}>{sector.sector_name} 
-            <ul>
-              <li>From Pacs: ${sector.pacs}</li>
-              <li>From Individuals: ${sector.indivs}</li>
-              <li>Total: ${sector.total}</li>
-            </ul>
-          </li>
-      ))}
-      </ol>
+        <Table bordered striped>
+            <thead className={styles.Thead}>
+              <tr>
+                <th>#</th>
+                <th><strong>Industry</strong></th>
+                <th><strong>Pacs</strong></th>
+                <th><strong>Individuals</strong></th>
+                <th><strong>Total</strong></th>
+              </tr> 
+            </thead>
+          {sectors.sort((a,b) => b.total - a.total).map((sector, index) => (
+            <tbody>
+              <tr>
+                <td>{sectors.indexOf(sector) + 1}</td>
+                <td>{sector.sector_name}</td>
+                <td>${sector.pacs}</td>
+                <td>${sector.indivs}</td>
+                <td>${sector.total}</td>
+              </tr>
+            </tbody>
+          ))}
+        </Table>
     </div>
   )
 }};
