@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from "react";
-import { findCandContrib, findLegislator } from '../../services/civic';
+import { findCandContrib, findCandSumm, findLegislator } from '../../services/civic';
 import { getProfile } from '../../services/twitter_user';
 import styles from "./Legislator.module.scss";
 import Table from 'react-bootstrap/Table'
@@ -9,6 +9,8 @@ const Legislator = () => {
   const { id } = useParams();
   const [legislator, setLegislator] = useState(null);
   const [sectors, setSectors] = useState(null);
+  const [summ, setSumm] = useState(null);
+  const [chamber, setChamber] = useState(null);
 
   useEffect(() => {
     const populateLegislator = async () => {
@@ -24,8 +26,14 @@ const Legislator = () => {
   useEffect(() => {
     const populateSectors = async () => {
       const sectors = await findCandContrib(id);
+      const summ = await findCandSumm(id);
       console.log(`Campaign Contribution by Ind : ${sectors}`);
       setSectors(sectors);
+      setSumm(summ);
+      const chamber = summ.chamber === "H" ? "Rep.":
+                  summ.chamber === "S" ? "Sen.":
+                  "Congressman";
+      setChamber(chamber);
     }
 
     populateSectors();
@@ -33,14 +41,17 @@ const Legislator = () => {
   },[legislator]);
 
 
-  if(!sectors) {
+  if(!summ) {
     return <h1 className={styles.Loading}>Loading...</h1>
 
   } else {
 
   return (
     <div className={styles.Table}>
-      <h1 className={styles.LegTitle}>{legislator.firstlast}({legislator.party})</h1>
+      <h1 className={styles.LegTitle}>{chamber} {legislator.firstlast} ({legislator.party})</h1>
+      <h2 className={styles.LegTitle}>Up for re-election in {summ.next_election}</h2>
+      <h2 className={styles.LegTitle}>Current Campaign Balance - ${summ.cash_on_hand}</h2>
+      <h3 className={styles.TableTitle}>Campaign Contributions by Industry</h3>
         <Table bordered striped>
             <thead className={styles.Thead}>
               <tr>

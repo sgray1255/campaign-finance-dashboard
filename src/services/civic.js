@@ -1,6 +1,7 @@
 const MY_KEY = "&apikey=84b4c91ff2769e5079c6c4132930f73b";
 const GET_LEGISLATORS_API = "http://www.opensecrets.org/api/?method=getLegislators&output=json&id=";
 const CAND_CONTRIB_BY_SECTOR = "http://www.opensecrets.org/api/?method=candSector&output=json&cid=";
+const CAND_SUMM = "http://www.opensecrets.org/api/?method=candSummary&output=json&cid=";
 
 export const getLegislators = async (search) => {
 
@@ -27,4 +28,12 @@ export const findCandContrib = async (id) => {
   return sectors;
 };
 
+export const findCandSumm = async (id) => {
+  const response = await fetch(`${CAND_SUMM}${id}${MY_KEY}`);
+  const data = await response.json();
+  const candSummResponse = data.response.summary;
+  const summ = candSummResponse["@attributes"];
+  console.log(summ)
+  return summ;
+};
 
