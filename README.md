@@ -6,4 +6,6 @@ This project contains campaign finance data from OpenSecrets API, recording the 
 
 I also used NewsAPI to draw top political reporting in the US into the home page.
 
+## TODO
 
+I intend to add pictures of all the congressmen and more detailed finance information. 
