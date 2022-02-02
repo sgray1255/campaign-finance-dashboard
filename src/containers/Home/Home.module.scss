@@ -1,0 +1,30 @@
+.ArticleUrl {
+  text-overflow: ellipsis;
+
+}
+
+.NewsCard {
+  background: whitesmoke;
+  border: none;
+  width: 750px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.CardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  margin-left: 45%;
+  margin-bottom: 2%;
+  border: none;
+  background: lightgray;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
