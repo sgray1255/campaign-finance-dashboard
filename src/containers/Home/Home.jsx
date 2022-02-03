@@ -4,6 +4,10 @@ import { getNews } from '../../services/newscatcher';
 import 'bootstrap/dist/css/bootstrap.css';
 import Card from "react-bootstrap/Card";
 import styles from "./Home.module.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight, faNewspaper } from '@fortawesome/free-solid-svg-icons';
+
+
 
 const Home = () => {
   const [headlines, setHeadlines] = useState(null);
@@ -17,6 +21,8 @@ const Home = () => {
 
     populateHeadlines();
   }, []);
+
+
   if(!headlines) {
     return (
       <></>
@@ -24,13 +30,16 @@ const Home = () => {
   } else if(headlines) return (
     <>
     <div className={styles.CardList}>
+      <h2 className={styles.CardList__Title}>Democracy Dispatch&nbsp;&nbsp;<FontAwesomeIcon icon={faNewspaper}/></h2>
     {headlines.map((article, index) => 
       <Card className={styles.NewsCard} key={index}>
         <Card.Img src={article.urlToImage}/>
-        <Card.Title style={{ padding: '2.5%'}}>{article.title}</Card.Title>
-        <Card.Text style={{ padding: '2.5%'}}>{article.publishedAt.slice(0,10)}</Card.Text>
+        <div className={styles.NewsCard__Header}>
+          <Card.Title className={styles.NewsCard__Title} style={{ padding: '2.5%'}}>{article.title} - {`${!article.title}.contains(${article.source.name})` ? article.source.name : ''} </Card.Title>
+          <Card.Text className={styles.NewsCard__Date} style={{ padding: '2.5%'}}>{article.publishedAt.slice(0,10).replace(/-/g,'.').split('.').reverse().join('.')} </Card.Text>
+        </div>
         <Card.Text style={{ padding: '2.5%'}}className={styles.ArticleUrl}>{article.description}</Card.Text>
-        <a href={article.url}><button className={styles.button}>Read More</button></a>
+        <a className={styles.A} href={article.url}>Read More <FontAwesomeIcon icon={faChevronRight}/></a>
       </Card>
       )}
       </div>

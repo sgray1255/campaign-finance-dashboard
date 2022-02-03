@@ -4,6 +4,7 @@ import {getLegislators} from '../../services/civic';
 import { SearchContext } from "../../context/SearchContext";
 import SearchBar from '../../components/SearchBar';
 import styles from './Legislators.module.scss'
+import LegListTitle from '../../components/LegListTitle';
 
 const Legislators = () => {
   const [legislators, setLegislators] = useState(null);
@@ -26,7 +27,7 @@ const Legislators = () => {
   return (
     <div>
       <SearchBar />
-      <h1 className={styles.LegHeader}>{ searchTitle } State Congressmen</h1>
+      {searchTitle ? <LegListTitle searchTitle={searchTitle} /> : ''}
       <LegList legislators={ legislators }/>
     </div>
   )

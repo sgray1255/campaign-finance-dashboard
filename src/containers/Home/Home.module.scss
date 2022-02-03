@@ -4,19 +4,42 @@
 }
 
 .NewsCard {
-  background: whitesmoke;
+  background: none;
   border: none;
-  width: 750px;
+  border-radius: 0%;
+  width: 400px;
   margin-top: 5%;
   margin-bottom: 5%;
+  margin: 5%;
   font-family: 'Roboto', sans-serif;
+  border-bottom: 3px solid black;
+
+  &__Header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__Date {
+    color: gray;
+    font-size: 12px;
+  }
 }
 
 .CardList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+
+  &__Title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    margin-top: auto;
+    display: flex;
+    flex-basis: 100%;
+    margin-left: 5%;
+    margin-top: 5%;
+    border-bottom: 1px solid lightgray;
+  }
 }
 
 .button {
@@ -27,4 +50,13 @@
   background: lightgray;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
+}
+
+.button:hover {
+  color: whitesmoke;
+}
+
+.A {
+  text-decoration: none;
+  margin-left: 2%;
 }
