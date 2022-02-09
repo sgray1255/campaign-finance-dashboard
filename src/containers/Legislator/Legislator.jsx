@@ -50,7 +50,7 @@ const Legislator = () => {
     <div className={styles.Table}>
       <h1 className={styles.LegTitle}>{chamber} {legislator.firstlast} ({legislator.party})</h1>
       <h2 className={styles.LegTitle}>Up for re-election in {summ.next_election}</h2>
-      <h2 className={styles.LegTitle}>Current Campaign Balance - ${summ.cash_on_hand}</h2>
+      <h2 className={styles.LegTitle}>Cash on Hand - ${summ.cash_on_hand}</h2>
       <h3 className={styles.TableTitle}>Campaign Contributions by Industry</h3>
         <Table bordered striped>
             <thead className={styles.Thead}>
