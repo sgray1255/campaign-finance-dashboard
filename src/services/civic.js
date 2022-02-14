@@ -1,7 +1,4 @@
-// ---- API KEYS ----
-const MY_KEY = "&apikey=84b4c91ff2769e5079c6c4132930f73b";
-const GOOGLE_KEY = "AIzaSyCTKAC3zFG3p2sr2Ygc2_B_VI-GSs0mqQ0";
-OPEN_STATES_KEY = "4f549b55-d94e-4fe2-8fe2-38477385b399";
+import { openSecretsConfig, googleCivicsConfig, openStatesConfig } from "../config";
 
 // ---- APIs ----
 const GET_LEGISLATORS_API = "http://www.opensecrets.org/api/?method=getLegislators&output=json&id=";
@@ -11,12 +8,9 @@ GOOGLE_CIVIC_API = "https://www.googleapis.com/civicinfo/v2/elections?key=";
 OPEN_STATES_JURISDICTIONS = "https://v3.openstates.org/jurisdictions?apikey="
 
 
-
-
-
 export const getLegislators = async (search) => {
 
-  const response = await fetch(`${GET_LEGISLATORS_API}${search}${MY_KEY}`);
+  const response = await fetch(`${GET_LEGISLATORS_API}${search}${openSecretsConfig.MY_KEY}`);
   const data = await response.json();
   const legislatorsResponse = data.response.legislator;
   const legislators = legislatorsResponse.map((legislator) => legislator["@attributes"]);
@@ -24,7 +18,7 @@ export const getLegislators = async (search) => {
 };
 
 export const findLegislator = async (id) => {
-  const response = await fetch(`${GET_LEGISLATORS_API}${id}&cycle=2020&output=json${MY_KEY}`);
+  const response = await fetch(`${GET_LEGISLATORS_API}${id}&cycle=2020&output=json${openSecretsConfig.MY_KEY}`);
   const data = await response.json();
   const legislatorResponse = data.response.legislator;
   const legislator = legislatorResponse["@attributes"];
@@ -32,7 +26,7 @@ export const findLegislator = async (id) => {
 };
 
 export const findCandContrib = async (id) => {
-  const response = await fetch(`${CAND_CONTRIB_BY_SECTOR}${id}${MY_KEY}`);
+  const response = await fetch(`${CAND_CONTRIB_BY_SECTOR}${id}${openSecretsConfig.MY_KEY}`);
   const data = await response.json();
   const candContribResponse = data.response.sectors.sector;
   const sectors = candContribResponse.map((sector) => sector["@attributes"]);
@@ -40,7 +34,7 @@ export const findCandContrib = async (id) => {
 };
 
 export const findCandSumm = async (id) => {
-  const response = await fetch(`${CAND_SUMM}${id}${MY_KEY}`);
+  const response = await fetch(`${CAND_SUMM}${id}${openSecretsConfig.MY_KEY}`);
   const data = await response.json();
   const candSummResponse = data.response.summary;
   const summ = candSummResponse["@attributes"];
